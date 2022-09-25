@@ -6,39 +6,6 @@
 
 Menu::Menu() {
     colaCliente = new ColaPrioritaria<Cliente *>;
-
-    string nombre, id, ingNino, emb, aduMay, categoria;
-    bool ingresaNino, embarazo, adultoMayor;
-    Cliente *tmp;
-    fstream f;
-    f.open("DatosBancoUno.txt", ios::in);
-    if (f.is_open()) {
-        while (true) {
-            f >> nombre;
-            if (nombre == "") break;
-            f >> id;
-            f >> ingNino;
-            f >> emb;
-            f >> aduMay;
-            f.ignore(1);
-            getline(f, categoria, '\n');
-
-            if (ingNino == "Yes") ingresaNino = false;
-            else ingresaNino = true;
-
-            if (emb == "Yes") embarazo = false;
-            else embarazo = true;
-
-            if (aduMay == "Yes") adultoMayor = false;
-            else adultoMayor = true;
-
-            tmp = new Cliente(nombre, id, ingresaNino, embarazo, adultoMayor, categoria);
-            if (!f.eof()) colaCliente->enqueue(tmp);
-            else break;
-        }
-        f.close();
-    }
-
 }
 
 Menu::~Menu() {
@@ -47,7 +14,7 @@ Menu::~Menu() {
 
 void Menu::menuPrincipal() {
     int opcion;
-
+    try {
     do {
         cout << "-------------- Bienvenido a Banco Uno --------------" << endl;
         cout << "1--> Introducir en cola todos los clientes" << endl;
@@ -88,6 +55,9 @@ void Menu::menuPrincipal() {
 
         }
     } while (opcion != 0);
+    }catch(RuntimeException e){
+        cout<<e.getMensaje()<<endl;
+    }
 }
 
 void Menu::encolarTodos() {
@@ -176,6 +146,42 @@ void Menu::agregarCliente() {
 
     colaCliente->enqueue(clienteNuevo);
 
-    cout << "Cliente agregado a la cola con exito!";
+    cout << "Cliente agregado a la cola con exito!"<<endl;
 
+}
+
+void Menu::leerArchivo() {
+    string nombre, id, ingNino, emb, aduMay, categoria;
+    bool ingresaNino, embarazo, adultoMayor;
+    Cliente *tmp;
+    fstream f;
+    f.open("../DatosBancoUno.txt", ios::in);
+    if (f.is_open()) {
+        while (true) {
+            f >> nombre;
+            if (nombre == "") break;
+            f >> id;
+            f >> ingNino;
+            f >> emb;
+            f >> aduMay;
+            f.ignore(1);
+            getline(f, categoria, '\n');
+
+            if (ingNino == "Yes") ingresaNino = false;
+            else ingresaNino = true;
+
+            if (emb == "Yes") embarazo = false;
+            else embarazo = true;
+
+            if (aduMay == "Yes") adultoMayor = false;
+            else adultoMayor = true;
+
+            tmp = new Cliente(nombre, id, ingresaNino, embarazo, adultoMayor, categoria);
+            if (!f.eof()) colaCliente->enqueue(tmp);
+            else break;
+        }
+        f.close();
+    }else{
+        throw RuntimeException("El archivo no se pudo abrir");
+    }
 }

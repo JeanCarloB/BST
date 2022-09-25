@@ -4,7 +4,7 @@
 
 #ifndef BST_MENU_H
 #define BST_MENU_H
-#include "ABB.cpp"
+
 #include "ColaPrioritaria.cpp"
 #include "Cliente.h"
 
@@ -24,6 +24,7 @@ public:
     void mostrarSiguienteAtender();
     void simularAtencion();
     void agregarCliente();
+    void leerArchivo();
 };
 
 

@@ -18,58 +18,25 @@ private:
 
 public:
 
-    Nodo(T elemento, int indice,  Nodo<T>* anterior, Nodo<T>* siguiente)
-    {
-        this->elemento = elemento;
-        this->indice = indice;
-        this->anterior = anterior;
-        this->siguiente = siguiente;
-    }
+    Nodo(T elemento, int indice,  Nodo<T>* anterior, Nodo<T>* siguiente);
 
-    void setElemento(T elemento)
-    {
-        this->elemento = elemento;
-    }
+    void setElemento(T elemento);
 
-    T getElemento() const
-    {
-        return this->elemento;
-    }
+    T getElemento() const;
 
-    void setIndice(int indice)
-    {
-        this->indice = indice;
-    }
+    void setIndice(int indice);
 
-    int getIndice() const
-    {
-        return this->indice;
-    }
+    int getIndice() const;
 
-    void setAnterior(Nodo<T>* anterior)
-    {
-        this->anterior = anterior;
-    }
+    void setAnterior(Nodo<T>* anterior);
 
-    Nodo<T>* getAnterior() const
-    {
-        return this->anterior;
-    }
+    Nodo<T>* getAnterior() const;
 
-    void setSiguiente(Nodo<T>* siguiente)
-    {
-        this->siguiente = siguiente;
-    }
+    void setSiguiente(Nodo<T>* siguiente);
 
-    Nodo<T>* getSiguiente() const
-    {
-        return this->siguiente;
-    }
+    Nodo<T>* getSiguiente() const;
 
-    ~Nodo()
-    {
-
-    }
+    ~Nodo();
 };
 
 

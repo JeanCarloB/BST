@@ -8,7 +8,7 @@
 #define MAX_PRIO_COL 1
 #define MIN_PRIO_COL 2
 
-#include "Heap.h"
+#include "Heap.cpp"
 #include "RuntimeException.h"
 
 template<class T>
@@ -23,53 +23,22 @@ public:
     static const int MaxCola= MAX_PRIO_COL;
     static const int MinCola= MIN_PRIO_COL;
 
-    ColaPrioritaria(int tipo = MaxCola)
-    {
-        this->heap = new Heap<T>();
-        this->tipo = tipo;
-    }
+    ColaPrioritaria(int tipo = MaxCola);
 
-    ColaPrioritaria(const ColaPrioritaria& cola)
-    {
-        this->heap = new Heap<T>(*cola.heap);
-        this->tipo = cola.tipo;
-    }
+    ColaPrioritaria(const ColaPrioritaria& cola);
 
-    ColaPrioritaria(Lista<T>& lista, int tipo = MaxCola)
-    {
-        this->heap = new Heap<T>(new Lista<T>(lista), tipo);
-        this->tipo = tipo;
-    }
+    ColaPrioritaria(Lista<T>& lista, int tipo = MaxCola);
 
-    bool esVacia()
-    {
-        return this->heap->esVacia();
-    }
+    bool esVacia();
 
-    void enqueue(T elemento)
-    {
-        this->heap->insertar(elemento);
-    }
+    void enqueue(T elemento);
 
-    T dequeue()
-    {
-        return this->heap->getPrimeroq();
-    }
+    T dequeue();
 
-    void eliminar(int posicion)
-    {
-        this->heap->eliminar(posicion);
-    }
+    void eliminar(int posicion);
 
-    void Imprimir()
-    {
-        this->heap->Imprimir();
-    }
+    void Imprimir();
 
-    ~ColaPrioritaria()
-    {
-
-        delete this->heap;
-    }
+    ~ColaPrioritaria();
 };
 #endif //BST_COLAPRIORITARIA_H
